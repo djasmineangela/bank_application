@@ -10,6 +10,9 @@ public class BankInterface {
     public static void main(String[] args) {
 
         BankTransaction bankTransaction = new BankTransaction();
+        BankDetailsFileReader bankDetailsReader = new BankDetailsFileReader(); 
+        bankDetailsReader.read();
+        
         while (true) {
             System.out.println("Enter any of the below options:");
             System.out.println("1 --> Deposit");
@@ -47,7 +50,10 @@ public class BankInterface {
                     amount = in.nextInt();
                     bankTransaction.withdraw(amount);
                     break;
-
+                case 3: 
+                    System.out.println("Bank Statement:");
+                    bankTransaction.getStatement();;
+                    break;
                 default:
                     break;
             }
