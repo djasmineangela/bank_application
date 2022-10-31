@@ -7,15 +7,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BankDetailsFileReader extends TransactionList{
+public class BankDetailsFileReader extends TransactionList {
     File bankStatement = new File("D:\\workspace\\BankApplication\\src\\bankFiles\\bankStatement.txt");
     FileReader fileReader = null;
     BufferedReader reader = null;
 
-    
-    public int read() {
+    public List<String> read() {
         List<String> transactions = new ArrayList<>();
-        int balance =0;
+        // int totalBalance =0;
         try {
 
             fileReader = new FileReader(bankStatement);
@@ -23,13 +22,14 @@ public class BankDetailsFileReader extends TransactionList{
 
             if (bankStatement.exists()) {
                 String line = null;// +1000
-                while ((line = reader.readLine()) != null) { //read
+                while ((line = reader.readLine()) != null) { // read
                     System.out.println(line);
-                    transactions.add(line); //storing
+                    transactions.add(line); // storing
                 }
-                
-                balance = parseOperator(transactions);
-                
+
+                // setTransactions(transactions);
+                // parseOperator();
+
             } else {
                 bankStatement.createNewFile();
                 System.out.println("File: " + bankStatement.getCanonicalPath() + " successfully created");
@@ -39,12 +39,8 @@ public class BankDetailsFileReader extends TransactionList{
             // TODO: handle exception
             System.out.println("Error: " + e.getMessage());
         }
-        
-        return balance;
+
+        return transactions;
     }
-
-    
-
-    
 
 }

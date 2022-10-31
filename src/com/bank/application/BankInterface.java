@@ -8,43 +8,50 @@ import com.bank.util.TransactionValidator;
 
 public class BankInterface {
     public static void main(String[] args) {
-        
-//        while(true) {
+
+        BankTransaction bankTransaction = new BankTransaction();
+        while (true) {
             System.out.println("Enter any of the below options:");
             System.out.println("1 --> Deposit");
             System.out.println("2 --> Withdraw");
             System.out.println("3 --> Statement");
             System.out.println("4 --> Balance");
-            
+
             Scanner in = new Scanner(System.in);
-            int userChoice = in.nextInt();            
+            int userChoice = in.nextInt();
+
+            // BankDetailsFileReader bankDetailsFileReader = new
+            // BankDetailsFileReader();
+            //
+            // BankAccount bankAccount = new BankAccount();
+
+            // TransactionList transactions = new TransactionList();
+            // int total = transactions.calculateBalance();
+            //
+            // int balance = bankDetailsFileReader.read();
+            // bankAccount.setBalance(balance);
+
             
-            BankDetailsFileReader bankDetailsFileReader = new BankDetailsFileReader();
-         
-            BankAccount bankAccount = new BankAccount();
-            
-//            TransactionList transactions = new TransactionList();
-//            int total = transactions.calculateBalance();
-//            
-            int balance = bankDetailsFileReader.read();
-            bankAccount.setBalance(balance);
-            
-            BankTransaction bankTransaction = new BankTransaction();
-            System.out.println("afssads" +bankAccount.getBalance());
-            
-//            bankAccount.setBalance(balance);
-            
+            // System.out.println("afssads" +bankAccount.getBalance());
+
+            // bankAccount.setBalance(balance);
+            int amount;
             switch (userChoice) {
                 case 1:
                     System.out.println("Enter amount to deposit:");
-                    int amount = in.nextInt();
-                    
+                    amount = in.nextInt();
+                    bankTransaction.deposit(amount);
+                    break;
+                case 2:
+                    System.out.println("Enter amount to withdraw:");
+                    amount = in.nextInt();
+                    bankTransaction.withdraw(amount);
                     break;
 
                 default:
                     break;
             }
         }
+    }
 
-    
-} 
+}
