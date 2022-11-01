@@ -14,7 +14,6 @@ public class BankDetailsFileReader extends TransactionList {
 
     public List<String> read() {
         List<String> transactions = new ArrayList<>();
-        // int totalBalance =0;
         try {
 
             fileReader = new FileReader(bankStatement);

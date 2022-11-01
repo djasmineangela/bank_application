@@ -10,8 +10,9 @@ public class BankInterface {
     public static void main(String[] args) {
 
         BankTransaction bankTransaction = new BankTransaction();
-        while (true) {
-            System.out.println("Enter any of the below options:");
+        boolean yesNo = true;
+        while (yesNo) {
+            System.out.println("\nEnter any of the below options:");
             System.out.println("1 --> Deposit");
             System.out.println("2 --> Withdraw");
             System.out.println("3 --> Statement");
@@ -47,10 +48,22 @@ public class BankInterface {
                     amount = in.nextInt();
                     bankTransaction.withdraw(amount);
                     break;
+                case 3:
+                    System.out.println("Enter amount to withdraw:");
+                    amount = in.nextInt();
+                    bankTransaction.withdraw(amount);
+                    break;
+                case 4:
+                    bankTransaction.balance();
+                    break;
 
                 default:
                     break;
             }
+            
+            System.out.print("Do you want to continue? (y/n)");
+            char yesNoChoice = in.nextLine().charAt(0);
+            yesNo = yesNoChoice == 'y' ? true : false;
         }
     }
 

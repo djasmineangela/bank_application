@@ -28,7 +28,7 @@ public class BankTransaction extends TransactionValidator implements Validator {
             // +
             bankAccount.setBalance(totalBalance); // deposited amount
             System.out.println("Total Balance: " + totalBalance);
-        }
+        } // else need
 
         for (String trans : transactionList.getTransactions()) {
             System.out.println(trans);
@@ -39,15 +39,28 @@ public class BankTransaction extends TransactionValidator implements Validator {
     }
 
     public void withdraw(int amount) {
-        if (isDivisibleBy100(amount) & checkAmountLimit(amount)) {
+        // if (isAmountLessThanBalance(bankAccount, amount)) {
+        // System.out.println("goodss");
+        // } else {
+        // System.out.println("not goods");
+        // }
+        if (isDivisibleBy100(amount) & checkAmountLimit(amount) & isAmountLessThanBalance(bankAccount, amount)) {
             transactionList.add("-" + amount);
             int totalBalance = bankAccount.getBalance() - amount;
             bankAccount.setBalance(totalBalance);
             System.out.println("Total Balance: " + totalBalance);
         }
-        
+
         for (String trans : transactionList.getTransactions()) {
             System.out.println(trans);
         }
+    }
+    
+    public void statement() {
+        
+    }
+    
+    public void balance() {
+        System.out.println("Your balance is: "+ bankAccount.getBalance());
     }
 }
