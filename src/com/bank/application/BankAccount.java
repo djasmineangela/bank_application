@@ -1,19 +1,16 @@
 package com.bank.application;
 
-public class BankAccount {
+public class BankAccount implements Account{
     private int balance;
 
-    public BankAccount() {
-
-    }
-
-    public int getBalance() { // current balance
+    @Override
+    public int getBalance() {
         return balance;
     }
 
+    @Override
     public void setBalance(int balance) {
-        System.out.println("set : " + balance);
         this.balance = balance;
     }
-
 }
+
