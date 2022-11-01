@@ -8,26 +8,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BankDetailsFileReader extends TransactionList {
-    File bankStatement = new File("D:\\workspace\\BankApplication\\src\\bankFiles\\bankStatement.txt");
     FileReader fileReader = null;
     BufferedReader reader = null;
+    
+    public static File setFileName () {
+        return new File("D:\\workspace\\BankApplication\\src\\bankFiles\\bankStatement.txt");
+    }
 
     public List<String> read() {
         List<String> transactions = new ArrayList<>();
         try {
 
+            File bankStatement = setFileName();
+            
             fileReader = new FileReader(bankStatement);
             reader = new BufferedReader(fileReader);
+            
 
             if (bankStatement.exists()) {
                 String line = null;// +1000
                 while ((line = reader.readLine()) != null) { // read
-                    System.out.println(line);
                     transactions.add(line); // storing
                 }
-
-                // setTransactions(transactions);
-                // parseOperator();
 
             } else {
                 bankStatement.createNewFile();

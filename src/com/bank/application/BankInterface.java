@@ -11,12 +11,9 @@ public class BankInterface {
 
         BankTransaction bankTransaction = new BankTransaction();
 
-        // BankDetailsFileReader bankDetailsReader = new
-        // BankDetailsFileReader();
-        // bankDetailsReader.read();
         Scanner in = new Scanner(System.in);
-        boolean yesNo = true;
-        while (yesNo) {
+        boolean continueTransaction = true;
+        while (continueTransaction) {
             System.out.println("\nEnter any of the below options:");
             System.out.println("1 --> Deposit");
             System.out.println("2 --> Withdraw");
@@ -25,20 +22,6 @@ public class BankInterface {
 
             int userChoice = in.nextInt();
 
-            // BankDetailsFileReader bankDetailsFileReader = new
-            // BankDetailsFileReader();
-            //
-            // BankAccount bankAccount = new BankAccount();
-
-            // TransactionList transactions = new TransactionList();
-            // int total = transactions.calculateBalance();
-            //
-            // int balance = bankDetailsFileReader.read();
-            // bankAccount.setBalance(balance);
-
-            // System.out.println("afssads" +bankAccount.getBalance());
-
-            // bankAccount.setBalance(balance);
             int amount;
             switch (userChoice) {
                 case 1:
@@ -64,14 +47,14 @@ public class BankInterface {
             }
 
             System.out.print("Do you want to continue? (y/n) ");
-            String yesNoChoice = in.next().toLowerCase();
-            yesNo = yesNoChoice.charAt(0) == 'y' ? true : false;
+            String continueTransactionChoice = in.next().toLowerCase();
+            continueTransaction = continueTransactionChoice.charAt(0) == 'y' ? true : false;
             System.out.println();
         }
 
-        if (!yesNo) {
+        if (!continueTransaction) {
             // System.out.println("yesno");
-            bankTransaction.updateBankStatement();
+            bankTransaction.closeTransaction();
         }
 
         in.close();
