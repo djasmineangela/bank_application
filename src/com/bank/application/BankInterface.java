@@ -2,18 +2,19 @@ package com.bank.application;
 
 import java.util.*;
 
-import javax.sql.rowset.spi.TransactionalWriter;
-
-import com.bank.util.TransactionValidator;
+// import javax.sql.rowset.spi.TransactionalWriter;
+//
+// import com.bank.util.TransactionValidator;
 
 public class BankInterface {
     public static void main(String[] args) {
 
         BankTransaction bankTransaction = new BankTransaction();
 
-        BankDetailsFileReader bankDetailsReader = new BankDetailsFileReader(); 
-        bankDetailsReader.read();
-
+        // BankDetailsFileReader bankDetailsReader = new
+        // BankDetailsFileReader();
+        // bankDetailsReader.read();
+        Scanner in = new Scanner(System.in);
         boolean yesNo = true;
         while (yesNo) {
             System.out.println("\nEnter any of the below options:");
@@ -22,7 +23,6 @@ public class BankInterface {
             System.out.println("3 --> Statement");
             System.out.println("4 --> Balance");
 
-            Scanner in = new Scanner(System.in);
             int userChoice = in.nextInt();
 
             // BankDetailsFileReader bankDetailsFileReader = new
@@ -36,7 +36,6 @@ public class BankInterface {
             // int balance = bankDetailsFileReader.read();
             // bankAccount.setBalance(balance);
 
-            
             // System.out.println("afssads" +bankAccount.getBalance());
 
             // bankAccount.setBalance(balance);
@@ -54,20 +53,29 @@ public class BankInterface {
                     break;
                 case 3:
                     System.out.println("Bank Statement:");
-                    bankTransaction.getStatement();;
+                    bankTransaction.getStatement();
                     break;
                 case 4:
                     bankTransaction.balance();
                     break;
-
                 default:
+                    System.out.println("Invalid input");
                     break;
             }
-            
-            System.out.print("Do you want to continue? (y/n)");
-            char yesNoChoice = in.nextLine().charAt(0);
-            yesNo = yesNoChoice == 'y' ? true : false;
+
+            System.out.print("Do you want to continue? (y/n) ");
+            String yesNoChoice = in.next().toLowerCase();
+            yesNo = yesNoChoice.charAt(0) == 'y' ? true : false;
+            System.out.println();
         }
+
+        if (!yesNo) {
+            // System.out.println("yesno");
+            bankTransaction.updateBankStatement();
+        }
+
+        in.close();
+
     }
 
 }

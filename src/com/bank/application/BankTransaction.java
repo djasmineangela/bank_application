@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import com.bank.util.TransactionValidator;
@@ -33,7 +34,10 @@ public class BankTransaction extends TransactionValidator implements Validator {
             // +
             bankAccount.setBalance(totalBalance); // deposited amount
             System.out.println("Total Balance: " + totalBalance);
-        } // else need
+            System.out.println("Transaction successful!");
+        } else {
+            System.out.println("Transaction failure!");
+        }
 
         for (String trans : transactionList.getTransactions()) {
             System.out.println(trans);
@@ -44,16 +48,16 @@ public class BankTransaction extends TransactionValidator implements Validator {
     }
 
     public void withdraw(int amount) {
-        // if (isAmountLessThanBalance(bankAccount, amount)) {
-        // System.out.println("goodss");
-        // } else {
-        // System.out.println("not goods");
-        // }
-        if (isDivisibleBy100(amount) & checkAmountLimit(amount) & isAmountLessThanBalance(bankAccount, amount)) {
-            transactionList.add("-" + amount);
-            int totalBalance = bankAccount.getBalance() - amount;
-            bankAccount.setBalance(totalBalance);
-            System.out.println("Total Balance: " + totalBalance);
+        if (!isAmountLessThanBalance(bankAccount, amount)) {
+            System.out.println("Insufficient balance in your account");
+        } else {
+            if (isDivisibleBy100(amount) & checkAmountLimit(amount)) {
+                transactionList.add("-" + amount);
+                int totalBalance = bankAccount.getBalance() - amount;
+                bankAccount.setBalance(totalBalance);
+                System.out.println("Total Balance: " + totalBalance);
+                System.out.println("Transaction successful!");
+            }
         }
 
         for (String trans : transactionList.getTransactions()) {
@@ -62,6 +66,12 @@ public class BankTransaction extends TransactionValidator implements Validator {
     }
 
     public void getStatement() {
+        for (String transaction : transactionList.getTransactions()) {
+            System.out.println(transaction);
+        }
+    }
+
+    public void updateBankStatement() {
         // bankDetailsFileWriter = new BankDetailsFileWriter();
         // bankDetailsFileWriter.displayStatement();
 
@@ -71,38 +81,39 @@ public class BankTransaction extends TransactionValidator implements Validator {
         // }
 
         String fileName = "C:\\Users\\parnit\\Downloads\\bank_application-main\\bank_application-main\\src\\bankFiles\\bankStatement.txt";
-//        String fileName = "D:\\workspace\\BankApplication\\src\\bankFiles\\bankStatement.txt";
-        
-        File myFile = new File(fileName); 
+        // String fileName = "D:\\workspace\\BankApplication\\src\\bankFiles\\bankStatement.txt";
+
+        File bankStatement = new File(fileName);
 
         FileWriter fileWriter;
-        BufferedWriter bufferedWriter;
+        PrintWriter out;
 
         try {
 
-            if (myFile.exists()) {
-                myFile.delete();
+            if (bankStatement.exists()) {
+                System.out.println("exists");
+                bankStatement.delete();
             }
 
-            myFile.createNewFile();
-            fileWriter = new FileWriter(fileName, true);
-            bufferedWriter = new BufferedWriter(fileWriter);
-           
+            bankStatement.createNewFile();
+            fileWriter = new FileWriter(fileName, false);
+            // bufferedWriter = new BufferedWriter(fileWriter);
+            out = new PrintWriter(fileWriter);
             for (String transaction : transactionList.getTransactions()) {
-                bufferedWriter.write("\n" + transaction);
-                System.out.println(transaction);
+                out.println(transaction);
+                System.out.println("fasdfasdfad" + transaction);
             }
-
-            
-            bufferedWriter.close();
+            out.flush();
+            out.close();
 
         } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage()); 
         }
 
     }
 
     public void balance() {
-        System.out.println("Your balance is: "+ bankAccount.getBalance());
+        System.out.println("Your balance is: " + bankAccount.getBalance());
     }
+
 }
