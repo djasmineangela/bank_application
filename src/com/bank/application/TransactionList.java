@@ -21,7 +21,7 @@ public class TransactionList extends BankAccount {
 
     public void setTransactions(List<String> transactions) {
         this.transactions = transactions;
-        parseOperator();
+        parseOperator(); // put to separate lists
     }
 
     public TransactionList() {

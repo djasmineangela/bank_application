@@ -1,7 +1,6 @@
 package com.bank.util;
 
 import com.bank.application.BankAccount;
-import com.bank.application.Validator;
 
 public class TransactionValidator implements Validator {
 

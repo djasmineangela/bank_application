@@ -1,4 +1,6 @@
-package com.bank.application;
+package com.bank.util;
+
+import com.bank.application.BankAccount;
 
 public interface Validator {
 
