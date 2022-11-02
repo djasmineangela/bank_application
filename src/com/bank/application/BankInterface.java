@@ -14,23 +14,22 @@ public class BankInterface {
         Scanner in = new Scanner(System.in);
         boolean continueTransaction = true;
         while (continueTransaction) {
-            System.out.println("\nEnter any of the below options:");
             System.out.println("1 --> Deposit");
             System.out.println("2 --> Withdraw");
             System.out.println("3 --> Statement");
             System.out.println("4 --> Balance");
-
+            System.out.print("Enter any of the above options: ");
             int userChoice = in.nextInt();
 
             int amount;
             switch (userChoice) {
                 case 1:
-                    System.out.println("Enter amount to deposit:");
+                    System.out.print("Enter amount to deposit: ");
                     amount = in.nextInt();
                     bankTransaction.deposit(amount);
                     break;
                 case 2:
-                    System.out.println("Enter amount to withdraw:");
+                    System.out.print("Enter amount to withdraw: ");
                     amount = in.nextInt();
                     bankTransaction.withdraw(amount);
                     break;

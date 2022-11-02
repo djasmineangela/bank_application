@@ -12,7 +12,7 @@ public class BankDetailsFileReader extends TransactionList {
     BufferedReader reader = null;
     
     public static File setFileName () {
-        return new File("D:\\workspace\\BankApplication\\src\\bankFiles\\bankStatement.txt");
+        return new File("C:\\Users\\deljas\\Documents\\GitHub\\bank_application\\src\\bankFiles\\bankStatement.txt");
     }
 
     public List<String> read() {

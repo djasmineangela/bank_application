@@ -9,7 +9,6 @@ public class TransactionList extends BankAccount {
     private List<String> transactions;
 
     int total;
-    // BankAccount bankAccount;
 
     public int getTotal() {
         return total;
@@ -25,11 +24,9 @@ public class TransactionList extends BankAccount {
     }
 
     public TransactionList() {
-        // TODO Auto-generated constructor stub
         operators = new ArrayList<Character>();
         amounts = new ArrayList<Integer>();
         transactions = new ArrayList<String>();
-        // bankAccount = new BankAccount();
 
     }
 
@@ -47,9 +44,8 @@ public class TransactionList extends BankAccount {
                 total -= this.amounts.get(i);
             }
         }
-        System.out.println("Total " + total);
+
         this.total = total;
-        // bankAccount.setBalance(total);
         return total;
     }
 
@@ -60,20 +56,8 @@ public class TransactionList extends BankAccount {
             int amount = Integer.parseInt(getAmount);
             this.amounts.add(amount);
         }
-        // int total = calculateBalance();
-        // setBalance(total);
-        // return total;
 
     }
-
-    // public void add(char operator, int amount) {
-    // if (operator == '+') {
-    // operators.add('+');
-    // } else {
-    // operators.add('-');
-    // }
-    // amounts.add(amount);
-    // }
 
     public void add(String transaction) {
         transactions.add(transaction);
